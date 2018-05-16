@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import Button from 'antd/lib/button';
-import './App.css';
+import { BrowserRouter, Route,Link} from 'react-router-dom';
+import { Button } from 'antd';
+import './App.less';
 
+
+import Home from './components/home';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Button type="primary">Button</Button>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <a href="/abc">家</a>
+          <Link to="abc"> 家</Link>
+          <Route path="/abc" component={Home}/>
+        </div>
+      </BrowserRouter>
     );
   }
 }
