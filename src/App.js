@@ -4,25 +4,36 @@ import { Button } from 'antd';
 import './App.less';
 
 
-import home from './components/home';
-import product from './components/product';
-import about from './components/about';
+import Header from './components/header';
+import Home from './components/home';
+import Product from './components/product';
+import About from './components/about';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      aaa: 'aaa'
+    };
+  }
   render() {
+    const Links = () => (
+      <nav>
+        <NavLink exact activeClassName="active" to="/">Home</NavLink>
+        <NavLink activeStyle={{color: 'green'}} to={{pathname: '/about'}}>About</NavLink>
+        <NavLink 
+          isActive={this.isActiveFunc}
+          activeClassName="active" 
+          to="/contact">Contact</NavLink>
+      </nav>
+    )
     return (
       <BrowserRouter>
         <div className="App">
-          <nav>
-            <NavLink exact activeClassName="active" to="/">Home</NavLink>
-            <NavLink activeStyle={{color: 'green'}} to={{pathname: '/about'}}>About</NavLink>
-            <NavLink 
-              isActive={this.isActiveFunc}
-              activeClassName="active" 
-              to="/contact">Contact</NavLink>
-          </nav>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
-          <Route path="/about" render={() => <h1>About</h1>} />
-          <Route path="/contact" render={() => <h1>Contact</h1>} />
+          <Header aaa={this.state.aaa} />
+          <Links />
+          <Route exact path="/" component={Home}/>
+          <Route path="/about"  component={Product}/>
+          <Route path="/contact"  component={About}/>
         </div>
       </BrowserRouter>
     );
