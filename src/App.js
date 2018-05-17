@@ -8,6 +8,7 @@ import Header from './components/header';
 import Home from './components/home';
 import Product from './components/product';
 import About from './components/about';
+import ChildrenToFather from './components/childrenToFather';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +31,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Header aaa={this.state.aaa} />
+          <ChildrenToFather onSureHandle={this.sureHandle}/>
           <Links />
           <Route exact path="/" component={Home}/>
           <Route path="/about"  component={Product}/>
@@ -41,6 +43,9 @@ class App extends Component {
   isActiveFunc(match, location) {
     console.log(match,'contact')
     return match
+  }
+  sureHandle(val){
+    console.log('from widget', val)
   }
 }
 
