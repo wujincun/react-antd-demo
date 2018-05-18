@@ -13,13 +13,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      aaa: 'aaa'
+      aaa: 'aaa',
+      focus: 1,
+      list: []
     };
   }
   render() {
     const Links = () => (
       <nav>
-        <NavLink exact activeClassName="active" to="/">Home</NavLink>
+        <NavLink exact activeClassName="active" to="/" aaa={this.state.aaa}>Home</NavLink>
         <NavLink activeStyle={{color: 'green'}} to={{pathname: '/about'}}>About</NavLink>
         <NavLink 
           isActive={this.isActiveFunc}
@@ -30,10 +32,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header aaa={this.state.aaa} />
-          <ChildrenToFather onSureHandle={this.sureHandle}/>
+          <Header aaa={this.state.aaa} focus={this.state.focus == 1}/>
+          <ChildrenToFather onSureHandle={this.sureHandle.bind(this)}/>
+          <ul>
+            {this.state.list.map((item) =>(
+                          <li key={item}>{item}</li>
+                        ))}
+          </ul>
           <Links />
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={Home} />
           <Route path="/about"  component={Product}/>
           <Route path="/contact"  component={About}/>
         </div>
@@ -46,6 +53,11 @@ class App extends Component {
   }
   sureHandle(val){
     console.log('from widget', val)
+    this.state.list.push(val)
+    this.setState({
+      list: this.state.list 
+    });
+
   }
 }
 

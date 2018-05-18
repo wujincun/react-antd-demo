@@ -11,7 +11,9 @@ class about extends React.Component {
     }  
     sureHandle(){
       let val = this.refs.inputArea.value;
-      this.props.onSureHandle && this.props.onSureHandle(val)
+      this.props.onSureHandle && this.props.onSureHandle(val);
+      this.refs.inputArea.value = '';
+      this.refs.inputArea.focus();
     }     
 }
 
