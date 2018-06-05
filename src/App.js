@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     const Links = () => (
       <nav>
-        <NavLink exact activeClassName="active" to="/" aaa={this.state.aaa}>Home</NavLink>
+        <NavLink exact activeClassName="active" to="/">Home</NavLink>
         <NavLink activeStyle={{color: 'green'}} to={{pathname: '/about'}}>About</NavLink>
         <NavLink 
           isActive={this.isActiveFunc}
